@@ -1,0 +1,25 @@
+// Select the HTML element where the error message will be displayed
+const errorMessageElement = document.getElementById('error-message');
+
+// Using the Fetch method to retrieve data from the API
+fetch('https://jsonplaceholder.typicode.com/posts/123456789')
+  .then(response => {
+    // Check if the response is successful
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    // Parse the JSON data from the response
+    return response.json();
+  })
+  .then(post => {
+    // Log the retrieved post to the console
+    console.log('Retrieved post:', post);
+    // Display the post data on the webpage (replace this with your own logic)
+    // For example, you can update the DOM with the post data
+  })
+  .catch(error => {
+    // Log any errors that occurred during the fetch operation
+    console.error('Error fetching data:', error);
+    // Display the error message on the webpage
+    errorMessageElement.textContent = 'An error occurred while fetching data.';
+  });
